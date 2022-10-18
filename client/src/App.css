@@ -1,0 +1,56 @@
+/* Navbar styles */
+
+.navbar {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #06283d;
+	color: #47b5ff;
+}
+
+.logo {
+	font-size: 24px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+.list {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin-right: 10px;
+}
+
+.listItem {
+	margin-right: 24px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+/* Homepage styles */
+.home {
+	height: calc(100vh - 50px);
+	background-color: #dff6ff;
+	color: #256d85;
+}
+
+.homeWrapper {
+	padding: 100px;
+}
+
+.homepageTitle {
+	font-size: 45px;
+	margin: 50px 0;
+	font-weight: 900;
+}
+
+.homepageMessage {
+	font-size: 25px;
+	margin-top: 60px;
+}
+
+.homepageMessage > span {
+	text-decoration: underline;
+	cursor: pointer;
+}
