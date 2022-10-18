@@ -54,3 +54,56 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+/* Dashboard styles */
+
+.dashboardWrapper {
+	height: calc(100vh - 50px);
+	padding: 75px;
+	background-color: #dff6ff;
+	display: flex;
+	flex-direction: column;
+	color: #256d85;
+}
+
+.dashboardTop {
+	display: flex;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.dashboardImg {
+	height: 175px;
+	width: 175px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.dashboardRightContainer {
+	margin-left: 75px;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboardWelcomeMessage {
+	font-size: 40px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.dashboardEmail {
+	font-size: 20px;
+	font-weight: 300;
+	color: rgb(151, 151, 151);
+}
+
+.dashboardBottom {
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.dashboardBottom > span {
+	text-decoration: underline;
+	cursor: pointer;
+}
