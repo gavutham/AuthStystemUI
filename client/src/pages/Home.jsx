@@ -8,10 +8,10 @@ const Home = () => {
 			<div className="home">
 				<div className="homeWrapper">
 					<h1 className="homepageTitle">
-						Welcome the the Auth System project.
+						Welcome the the Auth System🔐 project.
 					</h1>
 					<h3 className="homepageMessage">
-						Get into the <span>Dashboard</span> to have a glance at the
+						Get into the <span>Dashboard</span> to have a 👁️glance👁️ at the
 						insights.
 					</h3>
 				</div>

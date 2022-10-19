@@ -22,8 +22,8 @@ const Dashboard = () => {
 					</div>
 				</div>
 				<div className="dashboardBottom">
-					This is your profile insights. <br />
-					<span>See more</span> about how the business is going on.
+					This is your profile insights📈 <br />
+					<span>See more</span>↗️ about how the business💲 is going on.
 				</div>
 			</div>
 		</div>
