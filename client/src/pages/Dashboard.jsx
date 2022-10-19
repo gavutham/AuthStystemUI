@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 const Dashboard = () => {
 	return (
 		<div className="dashboard">
-			<Navbar />
 			<div className="dashboardWrapper">
 				<div className="dashboardTop">
 					<div className="dashboardLeftContainer">

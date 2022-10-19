@@ -9,6 +9,11 @@
 	color: #47b5ff;
 }
 
+.link {
+	text-decoration: none;
+	color: inherit;
+}
+
 .logo {
 	font-size: 24px;
 	font-weight: bold;
@@ -50,17 +55,20 @@
 	margin-top: 60px;
 }
 
-.homepageMessage > span {
+.homepageMessage span {
 	text-decoration: underline;
 	cursor: pointer;
 }
 
 /* Dashboard styles */
 
-.dashboardWrapper {
+.dashboard {
 	height: calc(100vh - 50px);
-	padding: 75px;
 	background-color: #dff6ff;
+}
+
+.dashboardWrapper {
+	padding: 75px 75px 0;
 	display: flex;
 	flex-direction: column;
 	color: #256d85;
@@ -98,7 +106,7 @@
 }
 
 .dashboardBottom {
-	line-height: 50px;
+	line-height: 75px;
 	font-size: 20px;
 	font-weight: 500;
 }
