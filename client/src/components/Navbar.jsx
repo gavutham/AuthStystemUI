@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ user, setUser }) => {
+	const logout = () => {
+		window.location.replace("http://localhost:5000/logout");
+	};
 	return (
 		<div className="navbar">
 			<span className="logo">Auth Project</span>
@@ -18,7 +21,7 @@ const Navbar = ({ user, setUser }) => {
 				</li>
 				{user ? (
 					<li className="listItem">
-						<Link onClick={() => setUser(null)} className="link">
+						<Link onClick={logout} className="link">
 							LOGOUT
 						</Link>
 					</li>

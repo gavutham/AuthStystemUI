@@ -1,23 +1,26 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
 	return (
 		<div className="dashboard">
 			<div className="dashboardWrapper">
 				<div className="dashboardTop">
 					<div className="dashboardLeftContainer">
 						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU"
+							src={
+								user.profilePic != ""
+									? user.profilePic
+									: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU"
+							}
 							alt="profile-img"
 							className="dashboardImg"
 						/>
 					</div>
 					<div className="dashboardRightContainer">
 						<span className="dashboardWelcomeMessage">
-							Welcome Back, Scott Lang
+							Welcome Back, {user.firstName} {user.lastName}
 						</span>
-						<span className="dashboardEmail">abcd@efgh.com</span>
+						<span className="dashboardEmail">{user.email}</span>
 					</div>
 				</div>
 				<div className="dashboardBottom">

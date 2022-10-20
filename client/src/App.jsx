@@ -6,9 +6,29 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
 	const [user, setUser] = useState(null);
+
+	useEffect(() => {
+		const getUser = async () => {
+			try {
+				const res = await axios.get("http://localhost:5000/login/success", {
+					withCredentials: true,
+				});
+				if (res.data != null) {
+					setUser(res.data);
+				} else {
+					setUser(null);
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getUser();
+	}, []);
 	return (
 		<BrowserRouter>
 			<div className="App">
@@ -27,7 +47,7 @@ function App() {
 					/>
 					<Route
 						path="/dashboard"
-						element={user ? <Dashboard /> : <Navigate to={"/login"} />}
+						element={<Dashboard user={user} setUser={setUser} />}
 					/>
 				</Routes>
 			</div>

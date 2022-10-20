@@ -1,16 +1,22 @@
 import React from "react";
 
 const Login = () => {
+	const google = () => {
+		window.location.replace("http://localhost:5000/google/");
+	};
+	const facebook = () => {
+		window.location.replace("http://localhost:5000/facebook/");
+	};
 	return (
 		<div className="login">
 			<h1 className="loginTitle">Choose a Login Method</h1>
 			<div className="loginWrapper">
 				<div className="loginLeft">
-					<div className="loginButton google">
+					<div className="loginButton google" onClick={google}>
 						<i className="fa-brands fa-google icon"></i> Google
 					</div>
-					<div className="loginButton facebook">
-						<i class="fa-brands fa-facebook-f icon"></i> Facebook
+					<div className="loginButton facebook" onClick={facebook}>
+						<i className="fa-brands fa-facebook-f icon"></i> Facebook
 					</div>
 				</div>
 				<div className="loginCenter">
