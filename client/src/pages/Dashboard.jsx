@@ -10,7 +10,7 @@ const Dashboard = ({ user }) => {
 							src={
 								user.profilePic != ""
 									? user.profilePic
-									: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU"
+									: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
 							}
 							alt="profile-img"
 							className="dashboardImg"
@@ -18,7 +18,7 @@ const Dashboard = ({ user }) => {
 					</div>
 					<div className="dashboardRightContainer">
 						<span className="dashboardWelcomeMessage">
-							Welcome Back, {user.firstName} {user.lastName}
+							Welcome Back, {user.firstname} {user.lastname}
 						</span>
 						<span className="dashboardEmail">{user.email}</span>
 					</div>

@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRef } from "react";
+import axios from "axios";
 
-const Login = () => {
+const Login = ({ setUser }) => {
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const [error, setError] = useState(false);
 	const google = () => {
 		window.location.replace("http://localhost:5000/google/");
 	};
 	const facebook = () => {
 		window.location.replace("http://localhost:5000/facebook/");
+	};
+	const handleSubmit = async () => {
+		try {
+			setError(false);
+			const body = {
+				email: emailRef.current.value,
+				password: passwordRef.current.value,
+			};
+			console.log(body);
+			const res = await axios.get("http://localhost:5000/v1/login", {
+				params: body,
+			});
+			setUser(res.data);
+		} catch (err) {
+			console.log(err);
+			setError(true);
+		}
 	};
 	return (
 		<div className="login">
@@ -24,9 +46,20 @@ const Login = () => {
 					<div className="or">OR</div>
 				</div>
 				<div className="loginRight">
-					<input type="email" placeholder="Enter your Email" />
-					<input type="password" placeholder="Enter your Password" />
-					<button className="submit">Login</button>
+					<input type="email" placeholder="Enter your Email" ref={emailRef} />
+					<input
+						type="password"
+						placeholder="Enter your Password"
+						ref={passwordRef}
+					/>
+					{error && (
+						<span style={{ color: "crimson", marginBottom: "15px" }}>
+							Something went wrong.Try again
+						</span>
+					)}
+					<button className="submit" onClick={handleSubmit}>
+						Login
+					</button>
 				</div>
 			</div>
 		</div>

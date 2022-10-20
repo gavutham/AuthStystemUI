@@ -27,7 +27,7 @@ function App() {
 				console.log(err);
 			}
 		};
-		getUser();
+		user ? {} : getUser();
 	}, []);
 	return (
 		<BrowserRouter>
@@ -47,7 +47,13 @@ function App() {
 					/>
 					<Route
 						path="/dashboard"
-						element={<Dashboard user={user} setUser={setUser} />}
+						element={
+							user ? (
+								<Dashboard user={user} setUser={setUser} />
+							) : (
+								<Navigate to={"/login"} />
+							)
+						}
 					/>
 				</Routes>
 			</div>

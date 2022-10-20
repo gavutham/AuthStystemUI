@@ -1,20 +1,102 @@
 import React from "react";
+import { useRef } from "react";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import {
+	getStorage,
+	ref,
+	uploadBytesResumable,
+	getDownloadURL,
+} from "firebase/storage";
+import app from "../firebase";
+import axios from "axios";
 
-const Login = () => {
+const Register = ({ setUser }) => {
 	const [file, setFile] = useState(null);
+	const fnameRef = useRef();
+	const lnameRef = useRef();
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const [isFetching, setFetching] = useState(false);
+	const [error, setError] = useState(false);
+	const google = () => {
+		window.location.replace("http://localhost:5000/google/");
+	};
+	const facebook = () => {
+		window.location.replace("http://localhost:5000/facebook/");
+	};
+
+	const handleSubmit = () => {
+		const signup = async (user) => {
+			try {
+				const newUser = await axios.post(
+					"http://localhost:5000/v1/signup",
+					user
+				);
+				setUser(newUser.data);
+			} catch (err) {
+				setError(true);
+			}
+		};
+		setError(false);
+		setFetching(true);
+		if (file) {
+			const fileName = new Date().getTime() + file.name;
+			const storage = getStorage(app);
+			const storageRef = ref(storage, fileName);
+			const uploadTask = uploadBytesResumable(storageRef, file);
+
+			uploadTask.on(
+				"state_changed",
+				(snapshot) => {
+					const progress =
+						(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					console.log("Upload is " + progress + "% done");
+					switch (snapshot.state) {
+						case "paused":
+							console.log("Upload is paused");
+							break;
+						case "running":
+							console.log("Upload is running");
+							break;
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+						const user = {
+							email: emailRef.current.value,
+							password: passwordRef.current.value,
+							firstname: fnameRef.current.value,
+							lastname: lnameRef.current.value,
+							profilePic: downloadURL,
+						};
+						signup(user);
+					});
+				}
+			);
+		} else {
+			const user = {
+				email: emailRef.current.value,
+				password: passwordRef.current.value,
+				firstname: fnameRef.current.value,
+				lastname: lnameRef.current.value,
+			};
+			signup(user);
+		}
+	};
 
 	return (
-		<div className="login">
+		<div className={"login " + (isFetching && " disabledpage")}>
 			<h1 className="loginTitle">Choose an option to Register</h1>
 			<div className="loginWrapper">
 				<div className="loginLeft">
-					<div className="loginButton google">
+					<div className="loginButton google" onClick={google}>
 						<i className="fa-brands fa-google icon"></i> Google
 					</div>
-					<div className="loginButton facebook">
-						<i class="fa-brands fa-facebook-f icon"></i> Facebook
+					<div className="loginButton facebook" onClick={facebook}>
+						<i className="fa-brands fa-facebook-f icon"></i> Facebook
 					</div>
 				</div>
 				<div className="loginCenter">
@@ -33,7 +115,7 @@ const Login = () => {
 							className="profileImg"
 						/>
 						<label htmlFor="file">
-							<i class="fa-solid fa-plus"></i>Upload your photo
+							<i className="fa-solid fa-plus"></i>Upload your photo
 						</label>
 						<input
 							className="profileInput"
@@ -43,15 +125,38 @@ const Login = () => {
 						/>
 					</div>
 
-					<input type="text" placeholder="Enter your First Name" />
-					<input type="text" placeholder="Enter your Last Name" />
-					<input type="email" placeholder="Enter your Email" />
-					<input type="password" placeholder="Enter your Password" />
-					<button className="submit">Register</button>
+					<input
+						type="text"
+						placeholder="Enter your First Name"
+						ref={fnameRef}
+					/>
+					<input
+						type="text"
+						placeholder="Enter your Last Name"
+						ref={lnameRef}
+					/>
+					<input type="email" placeholder="Enter your Email" ref={emailRef} />
+					<input
+						type="password"
+						placeholder="Enter your Password"
+						ref={passwordRef}
+					/>
+					{error && (
+						<span style={{ color: "crimson", marginBottom: "15px" }}>
+							Something went wrong.Try again
+						</span>
+					)}
+					<button
+						className="submit"
+						disabled={isFetching}
+						onClick={handleSubmit}
+					>
+						Sign Up
+					</button>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Login;
+export default Register;
