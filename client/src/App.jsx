@@ -15,9 +15,12 @@ function App() {
 	useEffect(() => {
 		const getUser = async () => {
 			try {
-				const res = await axios.get("http://localhost:5000/login/success", {
-					withCredentials: true,
-				});
+				const res = await axios.get(
+					"https://auth-system-skill-test.herokuapp.com/login/success",
+					{
+						withCredentials: true,
+					}
+				);
 				if (res.data != null) {
 					setUser(res.data);
 				} else {

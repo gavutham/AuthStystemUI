@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ user, setUser }) => {
 	const logout = () => {
-		window.location.replace("http://localhost:5000/logout");
+		window.location.replace(
+			"https://auth-system-skill-test.herokuapp.com/logout"
+		);
 	};
 	return (
 		<div className="navbar">

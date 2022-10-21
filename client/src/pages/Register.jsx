@@ -19,17 +19,21 @@ const Register = ({ setUser }) => {
 	const [isFetching, setFetching] = useState(false);
 	const [error, setError] = useState(false);
 	const google = () => {
-		window.location.replace("http://localhost:5000/google/");
+		window.location.replace(
+			"https://auth-system-skill-test.herokuapp.com/google/"
+		);
 	};
 	const facebook = () => {
-		window.location.replace("http://localhost:5000/facebook/");
+		window.location.replace(
+			"https://auth-system-skill-test.herokuapp.com/facebook/"
+		);
 	};
 
 	const handleSubmit = () => {
 		const signup = async (user) => {
 			try {
 				const newUser = await axios.post(
-					"http://localhost:5000/v1/signup",
+					"https://auth-system-skill-test.herokuapp.com/v1/signup",
 					user
 				);
 				setUser(newUser.data);

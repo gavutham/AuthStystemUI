@@ -7,10 +7,14 @@ const Login = ({ setUser }) => {
 	const passwordRef = useRef();
 	const [error, setError] = useState(false);
 	const google = () => {
-		window.location.replace("http://localhost:5000/google/");
+		window.location.replace(
+			"https://auth-system-skill-test.herokuapp.com/google/"
+		);
 	};
 	const facebook = () => {
-		window.location.replace("http://localhost:5000/facebook/");
+		window.location.replace(
+			"https://auth-system-skill-test.herokuapp.com/facebook/"
+		);
 	};
 	const handleSubmit = async () => {
 		try {
@@ -20,9 +24,12 @@ const Login = ({ setUser }) => {
 				password: passwordRef.current.value,
 			};
 			console.log(body);
-			const res = await axios.get("http://localhost:5000/v1/login", {
-				params: body,
-			});
+			const res = await axios.get(
+				"https://auth-system-skill-test.herokuapp.com/v1/login",
+				{
+					params: body,
+				}
+			);
 			setUser(res.data);
 		} catch (err) {
 			console.log(err);
